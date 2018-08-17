@@ -1,7 +1,7 @@
 package Bank;
 
 /**
- * Represents an bank Agent or Attendant.
+ * Represents an bank Attendant(Agent).
  * It can be attending a client or not,
  * which means that sometimes will be busy and other times available.
  */
@@ -45,7 +45,7 @@ public abstract class Attendant {
     }
 
     /**
-     *
+     * Gives the type/role of the attendant
      * @return
      */
     public AgentType getType(){
@@ -54,6 +54,7 @@ public abstract class Attendant {
     }
 
     /**
+     * Set the type of the attendant (agent)
      * @param type
      */
     public void setType(AgentType type){
@@ -61,21 +62,24 @@ public abstract class Attendant {
     }
 
     /**
-     *
+     * Set the availability of the agent as false which means that is busy.
      */
     public void setBusy(){
         availability = false;
     }
 
     /**
-     * @return
+     * Gets the availability of this attendant.
+     * @return the availability of this attendant
      */
     public boolean isAvailable(){
+
         return availability;
     }
 
     /**
-     * @return
+     * Gets the client who is going to be attended by this agent.
+     * @return the assigned client
      */
     public Client getClient() {
 
@@ -83,7 +87,8 @@ public abstract class Attendant {
     }
 
     /**
-     * @param client
+     * Attend a client, so this agent gets busy and the client is set.
+     * @param client Client who is going to be attended
      */
     public void attendClient(Client client){
         this.client = client;
@@ -96,7 +101,7 @@ public abstract class Attendant {
     }
 
     /**
-     *
+     * Stops attending the client and is now available.
      */
     public void releaseClient(){
         this.client = null;

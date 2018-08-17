@@ -6,21 +6,21 @@ import java.util.Queue;
 import java.util.concurrent.*;
 
 /**
- *
+ * Represents a dispatcher of the bank that assign a client to a attendant.
  */
 public class Dispatcher{
     /**
-     *
+     *  Executor
      */
     ExecutorService executor;
     /**
-     *
+     * List of the attendants of the bank.
      */
     List<Attendant> attendants;
 
 
     /**
-     *
+     * Creates a dispatcher who is able to attend 10 concurrent clients.
      */
     public Dispatcher(){
         attendants = new ArrayList<Attendant>();
@@ -32,7 +32,8 @@ public class Dispatcher{
         }
 
     /**
-     * @param i
+     * Creates the cashiers of the bank, the number is given by the parameter.
+     * @param i The number of cashiers to be created.
      */
     private void createCashiers(int i){
         int count=1;
@@ -43,7 +44,8 @@ public class Dispatcher{
     }
 
     /**
-     * @param i
+     * Creates the supervisors of the bank, the number is given by the parameter.
+     * @param i The number of cashiers to be created.
      */
     private void createSupervisors(int i){
         int count=1;
@@ -54,7 +56,8 @@ public class Dispatcher{
     }
 
     /**
-     * @param i
+     * Creates the directors of the bank, the number is given by the parameter.
+     * @param i The number of cashiers to be created.
      */
     private void createDirectors(int i){
         int count=1;
@@ -65,7 +68,10 @@ public class Dispatcher{
     }
 
     /**
-     * @return
+     * Gives the available attendant, looks first for an available cashier,
+     * then for an available supervisor
+     * and lastly for an available director.
+     * @return The available attendant.
      */
     private Attendant availableAttendant(){
         return  attendants.stream()
@@ -82,7 +88,8 @@ public class Dispatcher{
     }
 
     /**
-     * @param client
+     * Assign the given client with the available attendant.
+     * @param client The client to be attended.
      */
     public void attend(Client client)  {
         int indexAttendant = attendants.indexOf(availableAttendant());
@@ -97,7 +104,7 @@ public class Dispatcher{
     }
 
     /**
-     *
+     * Shuts down the executor.
      */
     public void shutDown(){
         executor.shutdown();
